@@ -90,10 +90,11 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
 
   <main id="inicio">
     <section class="portada" style={`--foto: url('${url('img/gym-oscuro.webp')}')`}>
+      <img class="portada__logo" src={url('img/logo.png')} alt="" width="307" height="307">
       <div class="portada__contenido">
         <p class="estado" data-estado aria-live="polite">Horario de hoy</p>
         <h1 class="titular">
-          <span class="titular__linea">Más fuerte</span>
+          <span class="titular__linea titular__cromo">Más fuerte</span>
           <span class="titular__linea titular__chica">cada día en</span>
           <span class="titular__linea titular__acento">Área Fit</span>
         </h1>
@@ -199,8 +200,8 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
           <p class="ubicacion__direccion">{GIMNASIO.direccion}</p>
           <p>Sobre la Calle 52, en el barrio Villa Colombia.</p>
           <div class="acciones">
-            <a class="boton boton--oscuro" href={mapa} target="_blank" rel="noopener">Abrir en Google Maps</a>
-            <a class="boton boton--linea-oscura" href={`https://waze.com/ul?q=${encodeURIComponent(GIMNASIO.direccion)}`} target="_blank" rel="noopener">Abrir en Waze</a>
+            <a class="boton boton--acento" href={mapa} target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <a class="boton boton--vidrio" href={`https://waze.com/ul?q=${encodeURIComponent(GIMNASIO.direccion)}`} target="_blank" rel="noopener">Abrir en Waze</a>
           </div>
         </div>
         <iframe class="mapa revelar" title="Mapa de Área Fit" src={`${mapa}&output=embed`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -334,6 +335,9 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
       --acento: #3b8cff;
       --acento-2: #6fabff;
       --verde: #3ddc84;
+      --oro: #f4c24d;
+      --cromo: linear-gradient(180deg, #ffffff 0%, #e4eaf3 42%, #7f8a9c 52%, #f1f4f9 68%, #a9b3c3 100%);
+      --hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath fill='%233b8cff' fill-opacity='0.06' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/svg%3E");
       --fuente: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
       --ancho: 72rem;
       --curva: cubic-bezier(0.2, 0.9, 0.25, 1);
@@ -341,7 +345,7 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-    body { margin: 0; background: var(--fondo); color: var(--texto); font-family: var(--fuente); font-size: 1.05rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; background: var(--hex), var(--fondo); color: var(--texto); font-family: var(--fuente); font-size: 1.05rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
     a { color: inherit; }
     h1, h2, h3 { margin: 0; line-height: 0.95; font-weight: 900; text-transform: uppercase; font-stretch: 75%; }
@@ -353,7 +357,9 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     .barra { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 1.5rem; padding: 0.9rem clamp(1rem, 4vw, 3rem); background: color-mix(in oklab, var(--fondo) 85%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--fondo-3); }
     .marca { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 900; font-stretch: 125%; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; margin: 0; }
     .marca span { color: var(--acento); }
-    .marca img { width: 2.5rem; height: 2.5rem; border-radius: 50%; }
+    .marca img { width: 2.75rem; height: 2.75rem; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(circle, black 45%, transparent 70%); mask-image: radial-gradient(circle, black 45%, transparent 70%); }
+    .barra .marca { background: var(--cromo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .barra .marca span { color: var(--acento); -webkit-text-fill-color: var(--acento); }
     .menu { display: flex; gap: 1.5rem; margin-left: auto; }
     .menu a { text-decoration: none; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; color: var(--texto-2); transition: color 0.2s; }
     .menu a:hover { color: var(--acento); }
@@ -373,7 +379,17 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
 
     /* Portada */
     .portada { position: relative; min-height: min(92svh, 56rem); display: grid; align-content: end; padding: 7rem clamp(1rem, 5vw, 4rem) 2rem; background: linear-gradient(180deg, rgb(11 14 20 / 0.35) 0%, rgb(11 14 20 / 0.6) 45%, var(--fondo) 100%), linear-gradient(90deg, rgb(11 14 20 / 0.85), transparent 70%), var(--foto) center / cover; overflow: hidden; }
-    .portada__contenido { max-width: var(--ancho); width: 100%; margin: 0 auto; }
+    .portada::before { content: ''; position: absolute; inset: -10% -20%; pointer-events: none; mix-blend-mode: screen;
+      background:
+        linear-gradient(112deg, transparent 66%, rgb(140 190 255 / 0.35) 67.8%, rgb(220 235 255 / 0.8) 68%, rgb(140 190 255 / 0.35) 68.2%, transparent 70%),
+        linear-gradient(112deg, transparent 76%, rgb(59 140 255 / 0.3) 77.5%, transparent 79%),
+        radial-gradient(ellipse at 75% 40%, rgb(59 140 255 / 0.28), transparent 55%);
+      animation: barrido 9s var(--curva) infinite alternate; }
+    @keyframes barrido { from { transform: translateX(-6%); opacity: 0.7; } to { transform: translateX(6%); opacity: 1; } }
+    .portada__logo { position: absolute; right: clamp(1rem, 6vw, 6rem); top: 50%; width: min(34vw, 30rem); height: auto; translate: 0 -55%; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(circle, black 42%, transparent 68%); mask-image: radial-gradient(circle, black 42%, transparent 68%); filter: drop-shadow(0 0 40px rgb(59 140 255 / 0.55)); animation: flota 6s ease-in-out infinite; }
+    @keyframes flota { 50% { transform: translateY(-14px); } }
+    @media (max-width: 52rem) { .portada { padding-top: 1.5rem; } .portada__logo { position: relative; top: auto; right: auto; translate: none; width: 14rem; margin: 0 auto 0.5rem; } }
+    .portada__contenido { position: relative; max-width: var(--ancho); width: 100%; margin: 0 auto; }
     .estado { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0 0 1.25rem; padding: 0.4rem 0.9rem; border-radius: 999px; background: rgb(0 0 0 / 0.45); border: 1px solid var(--fondo-3); font-size: 0.85rem; color: var(--texto-2); }
     .estado::before { content: ''; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--texto-2); }
     .estado--abierto { color: var(--verde); }
@@ -381,14 +397,15 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     @keyframes latido { 70% { box-shadow: 0 0 0 0.5rem transparent; } }
     .titular { font-size: clamp(3.4rem, 12vw, 9.5rem); letter-spacing: -0.01em; }
     .titular__linea { display: block; }
+    .titular__cromo { background: var(--cromo); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .titular__chica { font-size: 0.32em; font-stretch: 100%; letter-spacing: 0.12em; color: var(--texto-2); margin: 0.4em 0 0.25em; }
     .titular__acento { color: transparent; -webkit-text-stroke: 2px var(--acento); }
     @supports (background-clip: text) {
-      .titular__acento { background: linear-gradient(90deg, var(--acento), #a8d0ff); -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: 0; }
+      .titular__acento { background: linear-gradient(90deg, #1f6fff, var(--acento) 40%, #a8d0ff); -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: 0; filter: drop-shadow(0 0 28px rgb(59 140 255 / 0.55)); }
     }
     .portada__lema { margin: 1.25rem 0 2rem; font-size: clamp(1.1rem, 2.4vw, 1.5rem); font-weight: 600; letter-spacing: 0.04em; }
     .acciones { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .datos { list-style: none; max-width: var(--ancho); width: 100%; margin: 4rem auto 0; padding: 1.5rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; border-top: 1px solid var(--fondo-3); }
+    .datos { position: relative; list-style: none; max-width: var(--ancho); width: 100%; margin: 4rem auto 0; padding: 1.5rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; border-top: 1px solid var(--fondo-3); }
     .datos li { display: grid; }
     .datos strong { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 900; font-stretch: 80%; text-transform: uppercase; color: var(--acento); line-height: 1.1; }
     .datos span { color: var(--texto-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -402,14 +419,14 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
 
     /* Secciones */
     .seccion { padding: clamp(4rem, 9vw, 7rem) clamp(1rem, 5vw, 4rem); max-width: calc(var(--ancho) + 8rem); margin: 0 auto; }
-    .seccion--clara { max-width: none; background: var(--crema); color: var(--tinta); }
+    .seccion--clara { max-width: none; background: var(--hex), radial-gradient(ellipse at 50% 0%, rgb(59 140 255 / 0.14), transparent 60%), #0e131d; color: var(--texto); border-block: 1px solid rgb(59 140 255 / 0.25); }
     .seccion--clara > * { max-width: var(--ancho); margin-left: auto; margin-right: auto; }
     .cabeza { max-width: 40rem; margin-bottom: 2.5rem; }
     .cabeza h2 { font-size: clamp(2.6rem, 7vw, 5rem); }
     .cabeza p:last-child { color: var(--texto-2); margin: 1rem 0 0; }
-    .seccion--clara .cabeza p:last-child { color: #4d5668; }
+    .seccion--clara .cabeza p:last-child { color: var(--texto-2); }
     .antetitulo { margin: 0 0 0.6rem; color: var(--acento); font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; }
-    .seccion--clara .antetitulo { color: #1d5fd1; }
+    .seccion--clara .antetitulo { color: var(--oro); }
 
     /* Planes */
     .pestanas { display: inline-flex; gap: 0.25rem; padding: 0.3rem; margin-bottom: 2rem; border-radius: 999px; background: var(--fondo-2); border: 1px solid var(--fondo-3); max-width: 100%; overflow-x: auto; }
@@ -425,21 +442,21 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     .plan__precio small { font-size: 0.9rem; color: var(--texto-2); }
     .plan__detalle { margin: 0 0 0.75rem; color: var(--texto-2); font-size: 0.95rem; flex: 1; }
     .plan__detalle strong { color: var(--texto); }
-    .plan--destacado { background: linear-gradient(160deg, #0d1d3a, var(--fondo-2) 60%); border-color: var(--acento); }
+    .plan--destacado { box-shadow: 0 0 50px -18px var(--acento); background: linear-gradient(160deg, #0d1d3a, var(--fondo-2) 60%); border-color: var(--acento); }
     .plan--destacado .plan__precio { color: var(--acento); }
     .plan--destacado .boton--linea { background: var(--acento); border-color: var(--acento); color: var(--tinta); }
-    .plan__sello { position: absolute; top: -0.75rem; left: 1.25rem; margin: 0; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--acento); color: var(--tinta); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+    .plan__sello { box-shadow: 0 0 18px rgb(59 140 255 / 0.6); position: absolute; top: -0.75rem; left: 1.25rem; margin: 0; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--acento); color: var(--tinta); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
     .personalizado { margin-top: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: 1.5rem; background: radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--acento) 30%, transparent), transparent 60%), var(--fondo-2); border: 1px solid var(--fondo-3); }
     .personalizado h3 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
     .personalizado p:last-child { max-width: 36rem; color: var(--texto-2); margin: 0.75rem 0 0; }
 
     /* Horario */
     .horario { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
-    .horario__dia { position: relative; display: grid; gap: 0.35rem; padding: 1.5rem; border-radius: 1.25rem; background: white; border: 1px solid var(--crema-2); }
-    .horario__nombre { font-weight: 900; font-stretch: 75%; text-transform: uppercase; font-size: 1.6rem; line-height: 1; }
-    .horario__horas { color: #4d5668; font-weight: 600; }
+    .horario__dia { position: relative; display: grid; gap: 0.35rem; padding: 1.5rem; border-radius: 1.25rem; background: rgb(255 255 255 / 0.03); border: 1px solid var(--fondo-3); }
+    .horario__nombre { color: var(--oro); font-weight: 900; font-stretch: 75%; text-transform: uppercase; font-size: 1.6rem; line-height: 1; }
+    .horario__horas { color: var(--texto); font-weight: 700; font-size: 1.15rem; }
     .horario__hoy { display: none; position: absolute; top: 1rem; right: 1rem; padding: 0.2rem 0.6rem; border-radius: 999px; background: var(--acento); color: var(--tinta); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
-    .horario__dia.es-hoy { background: var(--tinta); color: var(--crema); border-color: var(--tinta); }
+    .horario__dia.es-hoy { background: linear-gradient(150deg, #0f2a5c, #0e131d 70%); border-color: var(--acento); box-shadow: 0 0 40px -12px var(--acento); }
     .horario__dia.es-hoy .horario__horas { color: var(--acento-2); }
     .horario__dia.es-hoy .horario__hoy { display: block; }
 
@@ -457,7 +474,7 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     .ubicacion h2 { font-size: clamp(2.6rem, 7vw, 5rem); }
     .ubicacion__direccion { font-size: 1.4rem; font-weight: 800; margin: 1.25rem 0 0.25rem; }
     .ubicacion .acciones { margin-top: 1.5rem; }
-    .mapa { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: 1.5rem; filter: grayscale(0.3) contrast(1.05); }
+    .mapa { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: 1.5rem; border: 1px solid rgb(59 140 255 / 0.35); filter: invert(0.92) hue-rotate(180deg) saturate(0.8); box-shadow: 0 0 50px -20px var(--acento); }
     @media (max-width: 52rem) { .ubicacion { grid-template-columns: 1fr; } }
 
     /* Sistema para el gimnasio (gym-app) */
@@ -495,7 +512,8 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     }
 
     /* Cierre */
-    .final { text-align: center; padding: clamp(4rem, 10vw, 7rem) 1rem; background: var(--acento); color: var(--tinta); }
+    .final { position: relative; overflow: hidden; text-align: center; padding: clamp(4rem, 10vw, 7rem) 1rem; background: linear-gradient(112deg, transparent 45%, rgb(255 255 255 / 0.35) 50%, transparent 55%), linear-gradient(135deg, #0a2f8a, #1f6fff 55%, #5aa2ff); color: white; }
+    .final h2 { text-shadow: 0 0 30px rgb(255 255 255 / 0.35); }
     .final h2 { font-size: clamp(2.6rem, 8vw, 5.5rem); }
     .final p { font-size: 1.15rem; margin: 1rem 0 2rem; }
     .pie { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; padding: 3rem clamp(1rem, 5vw, 4rem) 6rem; color: var(--texto-2); font-size: 0.9rem; }
@@ -510,7 +528,7 @@ const mapa = 'https://www.google.com/maps?q=' + encodeURIComponent(`Área Fit, $
     /* Entrada al hacer scroll: solo si el script confirmó que el usuario acepta movimiento. */
     .con-movimiento .revelar { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--curva), transform 0.7s var(--curva); }
     .con-movimiento .revelar.visto { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) { .cinta__pista, .estado--abierto::before { animation: none; } html { scroll-behavior: auto; } }
+    @media (prefers-reduced-motion: reduce) { .cinta__pista, .estado--abierto::before, .portada::before, .portada__logo { animation: none; } html { scroll-behavior: auto; } }
   </style>
 </body>
 </html>
